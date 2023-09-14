@@ -1,14 +1,14 @@
-package com.mnf.user.controller;
+package com.mnf.loginservice.controller;
 
-import com.mnf.user.dto.ResponseDto;
-import com.mnf.user.enumeration.ResponseDtoStatusEnum;
-import com.mnf.user.service.UserServiceImpl;
+import com.mnf.loginservice.dto.ResponseDto;
+import com.mnf.loginservice.enumeration.ResponseDtoStatusEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-public class BaseController<T> {
+public class BaseController<T>  extends ResponseEntityExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(BaseController.class);
 
     public ResponseEntity<ResponseDto<T>> createResponse(ResponseDto<T> service){
