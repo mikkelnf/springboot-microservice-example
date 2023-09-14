@@ -1,5 +1,6 @@
 package com.mnf.user.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class UserResponseDto {
@@ -7,7 +8,7 @@ public class UserResponseDto {
 
     private String isLogin;
 
-    private Date createdDate;
+    private LocalDate createdDate;
 
     public String getUsername() {
         return username;
@@ -25,11 +26,11 @@ public class UserResponseDto {
         this.isLogin = isLogin;
     }
 
-    public Date getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
 }

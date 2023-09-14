@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements IUserService{
+public class UserServiceImpl extends BaseService implements IUserService{
     @Autowired
     IUserRepository userRepository;
 
@@ -32,6 +32,7 @@ public class UserServiceImpl implements IUserService{
                 responseDto.setContent(modelMapper.map(optionalUserEntity.get(), UserResponseDto.class));
             }else{
                 responseDto.message = "User not found";
+                logger.info("user not found");
             }
         }catch (Exception e){
             responseDto.status = ResponseDtoStatusEnum.ERROR;
