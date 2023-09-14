@@ -1,17 +1,19 @@
 package com.mnf.user.dto;
 
+import com.mnf.user.enumeration.ResponseDtoStatusEnum;
+
 public class ResponseDto<T> {
-    public String status;
+    public ResponseDtoStatusEnum status;
 
     public String message;
 
     public T content;
 
-    public String getStatus() {
+    public ResponseDtoStatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ResponseDtoStatusEnum status) {
         this.status = status;
     }
 

@@ -1,13 +1,13 @@
 package com.mnf.user.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Date;
+import com.mnf.user.entity.listener.UserEntityListener;
+
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "user")
+@EntityListeners(UserEntityListener.class)
 public class UserEntity {
     @Id
     @Column(name = "id")
@@ -16,11 +16,17 @@ public class UserEntity {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "is_login")
     private int isLogin;
 
     @Column(name = "created_date")
-    private Date createdDate;
+    private LocalDate createdDate;
+
+    @Column(name = "updated_date")
+    private LocalDate updatedDate;
 
     public String getId() {
         return id;
@@ -46,11 +52,27 @@ public class UserEntity {
         this.isLogin = isLogin;
     }
 
-    public Date getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public LocalDate getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDate updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }
