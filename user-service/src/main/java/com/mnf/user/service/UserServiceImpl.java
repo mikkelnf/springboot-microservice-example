@@ -6,6 +6,7 @@ import com.mnf.user.dto.UserResponseDto;
 import com.mnf.user.entity.UserEntity;
 import com.mnf.user.enumeration.ResponseDtoStatusEnum;
 import com.mnf.user.repository.IUserRepository;
+import com.mnf.user.util.PasswordUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +52,7 @@ public class UserServiceImpl implements IUserService{
 
             UserEntity userEntity = new UserEntity();
             userEntity.setUsername(requestDto.getUsername());
-            userEntity.setPassword(requestDto.getPassword());
+            userEntity.setPassword(PasswordUtil.hashPassword(requestDto.getPassword()));
 
             userRepository.save(userEntity);
         }catch (Exception e){
