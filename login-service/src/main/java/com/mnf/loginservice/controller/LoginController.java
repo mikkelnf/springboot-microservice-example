@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/secured/api/login")
 public class LoginController extends BaseController {
     @Autowired
     ILoginService loginService;

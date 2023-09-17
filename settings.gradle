@@ -1,0 +1,6 @@
+rootProject.name = 'springboot-microservice-services'
+
+include('common')
+include('login-service')
+include('user-service')
+

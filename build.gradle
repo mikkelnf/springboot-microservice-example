@@ -1,0 +1,9 @@
+subprojects {
+	apply plugin: 'java'
+
+	// Specify the Java version for all subprojects
+	java {
+		sourceCompatibility = JavaVersion.VERSION_11
+		targetCompatibility = JavaVersion.VERSION_11
+	}
+}
