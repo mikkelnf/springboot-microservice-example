@@ -1,8 +1,7 @@
 package com.mnf.user.controller;
 
 import com.mnf.user.dto.ResponseDto;
-import com.mnf.user.enumeration.ResponseDtoStatusEnum;
-import com.mnf.user.service.UserServiceImpl;
+import com.mnf.common.enumeration.ResponseDtoStatusEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

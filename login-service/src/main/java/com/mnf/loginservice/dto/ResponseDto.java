@@ -1,7 +1,6 @@
 package com.mnf.loginservice.dto;
 
-
-import com.mnf.loginservice.enumeration.ResponseDtoStatusEnum;
+import com.mnf.common.enumeration.ResponseDtoStatusEnum;
 
 public class ResponseDto<T> {
     public ResponseDtoStatusEnum status;

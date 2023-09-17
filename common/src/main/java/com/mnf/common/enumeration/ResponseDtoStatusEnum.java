@@ -1,4 +1,4 @@
-package com.mnf.loginservice.enumeration;
+package com.mnf.common.enumeration;
 
 public enum ResponseDtoStatusEnum {
     SUCCESS, ERROR

@@ -1,6 +1,5 @@
 package com.mnf.user.config;
 
-import com.mnf.user.controller.UserController;
 import com.mnf.user.service.IUserService;
 import com.mnf.user.service.UserServiceImpl;
 import org.modelmapper.ModelMapper;
