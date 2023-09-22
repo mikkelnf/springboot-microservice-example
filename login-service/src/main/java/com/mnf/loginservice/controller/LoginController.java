@@ -1,6 +1,5 @@
 package com.mnf.loginservice.controller;
 
-import com.mnf.common.entity.UserEntity;
 import com.mnf.component.BaseController;
 import com.mnf.component.dto.ResponseStatusOnlyDto;
 import com.mnf.loginservice.dto.LoginRequestDto;

@@ -1,6 +1,6 @@
 package com.mnf.user.repository;
 
-import com.mnf.user.entity.UserEntity;
+import com.mnf.common.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

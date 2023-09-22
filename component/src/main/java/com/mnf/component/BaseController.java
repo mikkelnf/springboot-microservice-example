@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-public class BaseController<T> extends ResponseEntityExceptionHandler {
-    public ResponseEntity<ResponseDto<T>> createResponse(ResponseDto<T> serviceResponse){
+public class BaseController extends ResponseEntityExceptionHandler {
+    public <T> ResponseEntity<ResponseDto<T>> createResponse(ResponseDto<T> serviceResponse){
         HttpStatus status;
 
         if(serviceResponse.getStatus() == ResponseDtoStatusEnum.SUCCESS){

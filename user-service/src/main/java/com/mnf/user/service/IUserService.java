@@ -7,5 +7,5 @@ import com.mnf.user.dto.UserResponseDto;
 
 public interface IUserService {
     ResponseDto<UserResponseDto> findOneById(String id);
-    ResponseDto<ResponseStatusOnlyDto> addUser(AddUserRequestDto requestDto);
+    ResponseStatusOnlyDto addUser(AddUserRequestDto requestDto);
 }
