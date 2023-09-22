@@ -1,13 +1,10 @@
-package com.mnf.loginservice.dto;
+package com.mnf.component.dto;
 
-import com.mnf.common.enumeration.ResponseDtoStatusEnum;
+import com.mnf.component.enumeration.ResponseDtoStatusEnum;
 
-public class ResponseDto<T> {
+public abstract class AResponseDto {
     public ResponseDtoStatusEnum status;
-
     public String message;
-
-    public T content;
 
     public ResponseDtoStatusEnum getStatus() {
         return status;
@@ -23,13 +20,5 @@ public class ResponseDto<T> {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public T getContent() {
-        return content;
-    }
-
-    public void setContent(T content) {
-        this.content = content;
     }
 }

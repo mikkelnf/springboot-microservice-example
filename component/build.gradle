@@ -11,12 +11,17 @@ repositories {
 }
 
 dependencies {
-//	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.mindrot:jbcrypt:0.4'
-	implementation 'org.slf4j:slf4j-parent:2.0.5'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 }
+
+//jar {
+//	exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+//	manifest {
+//		attributes 'Main-Class': ''
+//	}
+//}
 
 bootJar {
 	enabled = false
 }
+
