@@ -6,10 +6,13 @@ import com.mnf.component.dto.ResponseDto;
 import com.mnf.component.dto.ResponseStatusOnlyDto;
 import com.mnf.component.enumeration.ResponseDtoStatusEnum;
 import com.mnf.user.dto.AddUserRequestDto;
+import com.mnf.user.dto.LoginRequestDto;
 import com.mnf.user.dto.UserResponseDto;
 import com.mnf.user.exception.UserException;
+import com.mnf.user.feign.ICallLoginFeignClient;
 import com.mnf.user.repository.IUserRepository;
 import com.mnf.user.util.PasswordUtil;
+import feign.FeignException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +29,23 @@ public class UserServiceImpl extends BaseService implements IUserService{
     @Autowired
     ModelMapper modelMapper;
 
+    @Autowired
+    ICallLoginFeignClient callLoginFeignClient;
+
     @Override
     public ResponseDto<UserResponseDto> findOneById(String id) {
+        LoginRequestDto loginRequestDto = new LoginRequestDto();
+        loginRequestDto.setUsername("user1");
+        loginRequestDto.setPassword("user1");
+
+        try {
+            loginFeign(loginRequestDto);
+        }catch (FeignException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
+        }
+
         ResponseDto<UserResponseDto> responseDto = new ResponseDto<>();
         responseDto.status = ResponseDtoStatusEnum.SUCCESS;
         responseDto.message = "OK";
@@ -62,5 +80,9 @@ public class UserServiceImpl extends BaseService implements IUserService{
         }
 
         return responseDto;
+    }
+
+    protected ResponseStatusOnlyDto loginFeign(LoginRequestDto loginRequestDto){
+        return callLoginFeignClient.login(loginRequestDto);
     }
 }

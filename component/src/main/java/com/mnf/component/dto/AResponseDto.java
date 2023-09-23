@@ -21,4 +21,12 @@ public abstract class AResponseDto{
     public void setMessage(String message) {
         this.message = message;
     }
+
+    @Override
+    public String toString() {
+        return "AResponseDto{" +
+                "status=" + status +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }
