@@ -12,6 +12,10 @@ public class BaseController extends ResponseEntityExceptionHandler {
         HttpStatus status;
 
         if(serviceResponse.getStatus() == ResponseDtoStatusEnum.SUCCESS){
+            if(serviceResponse.getMessage() == null){
+                serviceResponse.setMessage(HttpStatus.OK.getReasonPhrase());
+            }
+
             status = HttpStatus.OK;
         }else{
             status = HttpStatus.BAD_REQUEST;
@@ -24,6 +28,10 @@ public class BaseController extends ResponseEntityExceptionHandler {
         HttpStatus status;
 
         if(serviceResponse.getStatus() == ResponseDtoStatusEnum.SUCCESS){
+            if(serviceResponse.getMessage() == null){
+                serviceResponse.setMessage(HttpStatus.OK.getReasonPhrase());
+            }
+
             status = HttpStatus.OK;
         }else{
             status = HttpStatus.BAD_REQUEST;

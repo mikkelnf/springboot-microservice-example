@@ -18,5 +18,4 @@ public class LoginController extends BaseController {
     public ResponseEntity<ResponseStatusOnlyDto> login(@RequestBody LoginRequestDto requestDto) {
         return createResponse(loginService.login(requestDto));
     }
-
 }

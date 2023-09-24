@@ -5,7 +5,7 @@ import com.mnf.common.util.PasswordUtil;
 import com.mnf.component.dto.ResponseStatusOnlyDto;
 import com.mnf.component.enumeration.ResponseDtoStatusEnum;
 import com.mnf.loginservice.dto.LoginRequestDto;
-import com.mnf.loginservice.repository.ILoginRepository;
+import com.mnf.loginservice.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +16,13 @@ import java.util.Optional;
 @Transactional
 public class LoginServiceImpl implements ILoginService{
     @Autowired
-    ILoginRepository loginRepository;
+    IUserRepository userRepository;
 
     @Override
     public ResponseStatusOnlyDto login(LoginRequestDto requestDto){
         ResponseStatusOnlyDto response = new ResponseStatusOnlyDto();
 
-        Optional<UserEntity> optionalUserEntity = loginRepository.findByUsername(requestDto.getUsername());
+        Optional<UserEntity> optionalUserEntity = userRepository.findByUsername(requestDto.getUsername());
 
         if(optionalUserEntity.isEmpty()){
             response.setStatus(ResponseDtoStatusEnum.ERROR);
@@ -39,7 +39,7 @@ public class LoginServiceImpl implements ILoginService{
                 response.setMessage("User is still login");
             }else {
                 optionalUserEntity.get().setIsLogin(1);
-                loginRepository.save(optionalUserEntity.get());
+                userRepository.save(optionalUserEntity.get());
                 response.setStatus(ResponseDtoStatusEnum.SUCCESS);
             }
         }
