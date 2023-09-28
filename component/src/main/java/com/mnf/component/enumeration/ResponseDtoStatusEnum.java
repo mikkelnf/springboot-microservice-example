@@ -1,4 +1,4 @@
-package com.mnf.common.enumeration;
+package com.mnf.component.enumeration;
 
 public enum ResponseDtoStatusEnum {
     SUCCESS, ERROR

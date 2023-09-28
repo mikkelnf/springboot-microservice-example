@@ -1,7 +1,6 @@
 package com.mnf.user.dto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class UserResponseDto {
     private String username;

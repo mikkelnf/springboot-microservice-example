@@ -1,0 +1,30 @@
+plugins {
+	id 'org.springframework.boot' version "${springBootDependencies}"
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.mnf'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
+	implementation 'org.slf4j:slf4j-api:2.0.5'
+	implementation 'ch.qos.logback:logback-classic:1.2.6'
+}
+
+//jar {
+//	exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+//	manifest {
+//		attributes 'Main-Class': ''
+//	}
+//}
+
+bootJar {
+	enabled = false
+}
+

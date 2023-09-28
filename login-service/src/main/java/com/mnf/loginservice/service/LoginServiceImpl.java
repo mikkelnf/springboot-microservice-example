@@ -1,33 +1,35 @@
 package com.mnf.loginservice.service;
 
 import com.mnf.common.entity.UserEntity;
-import com.mnf.common.enumeration.ResponseDtoStatusEnum;
 import com.mnf.common.util.PasswordUtil;
+import com.mnf.component.dto.ResponseStatusOnlyDto;
+import com.mnf.component.enumeration.ResponseDtoStatusEnum;
 import com.mnf.loginservice.dto.LoginRequestDto;
-import com.mnf.loginservice.dto.ResponseDto;
-import com.mnf.loginservice.repository.ILoginRepository;
+import com.mnf.loginservice.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class LoginServiceImpl implements ILoginService{
     @Autowired
-    ILoginRepository loginRepository;
+    IUserRepository userRepository;
 
     @Override
-    public ResponseDto login(LoginRequestDto requestDto){
-        ResponseDto response = new ResponseDto();
+    public ResponseStatusOnlyDto login(LoginRequestDto requestDto){
+        ResponseStatusOnlyDto response = new ResponseStatusOnlyDto();
 
-        Optional<UserEntity> optionalUserEntity = loginRepository.findByUsername(requestDto.getUsername());
+        Optional<UserEntity> optionalUserEntity = userRepository.findByUsername(requestDto.getUsername());
 
         if(optionalUserEntity.isEmpty()){
             response.setStatus(ResponseDtoStatusEnum.ERROR);
             response.setMessage("User not found");
         }else {
-            Boolean isValidPassword = PasswordUtil.checkPassword(requestDto.getPassword(), optionalUserEntity.get().getPassword());
-            Boolean isNotLogin = optionalUserEntity.get().getIsLogin() != 1;
+            boolean isValidPassword = PasswordUtil.checkPassword(requestDto.getPassword(), optionalUserEntity.get().getPassword());
+            boolean isNotLogin = optionalUserEntity.get().getIsLogin() != 1;
 
             if(!isValidPassword){
                 response.setStatus(ResponseDtoStatusEnum.ERROR);
@@ -37,7 +39,7 @@ public class LoginServiceImpl implements ILoginService{
                 response.setMessage("User is still login");
             }else {
                 optionalUserEntity.get().setIsLogin(1);
-                loginRepository.save(optionalUserEntity.get());
+                userRepository.save(optionalUserEntity.get());
                 response.setStatus(ResponseDtoStatusEnum.SUCCESS);
             }
         }
