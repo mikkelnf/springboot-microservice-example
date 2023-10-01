@@ -142,7 +142,7 @@ public class UserServiceImpl extends ABaseService<UserEntity> implements IUserSe
         return getQueryBuilder()
                 .buildQuery(getUserEntityClass())
                 .start()
-                .equals("username", requestDto.getUsername())
+                    .equals("username", requestDto.getUsername())
                 .end();
     }
 
@@ -150,11 +150,11 @@ public class UserServiceImpl extends ABaseService<UserEntity> implements IUserSe
         return getQueryBuilder()
                 .buildQuery(getUserEntityClass())
                 .start()
-                .equals("username", requestDto.getUsername())
-                .and()
-                .equals("isLogin", requestDto.getIsLogin())
-                .and()
-                .equals("isActive", requestDto.getIsActive())
+                    .equals("username", requestDto.getUsername())
+                    .and()
+                    .equals("isLogin", requestDto.getIsLogin())
+                    .and()
+                    .equals("isActive", requestDto.getIsActive())
                 .end();
     }
 }
