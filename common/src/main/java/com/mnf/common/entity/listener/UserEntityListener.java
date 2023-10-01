@@ -14,7 +14,9 @@ public class UserEntityListener {
 
         if(entity.getId() == null) entity.setId(UUID.randomUUID().toString());
 
-        entity.setIsLogin(0);
+        if(entity.getIsActive() == null) entity.setIsActive(1);
+
+        if(entity.getIsLogin() == null) entity.setIsLogin(0);
     }
 
     @PreUpdate

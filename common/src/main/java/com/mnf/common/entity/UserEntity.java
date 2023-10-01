@@ -1,13 +1,12 @@
 package com.mnf.common.entity;
 
-
 import com.mnf.common.entity.listener.UserEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "user")
+@Table(name = "USER")
 @EntityListeners(UserEntityListener.class)
 public class UserEntity {
     @Id
@@ -21,13 +20,24 @@ public class UserEntity {
     private String password;
 
     @Column(name = "is_login")
-    private int isLogin;
+    private Integer isLogin;
+
+    @Column(name = "is_active")
+    private Integer isActive;
 
     @Column(name = "created_date")
     private LocalDate createdDate;
 
     @Column(name = "updated_date")
     private LocalDate updatedDate;
+
+    public Integer getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
+    }
 
     public String getId() {
         return id;
@@ -45,11 +55,11 @@ public class UserEntity {
         this.username = username;
     }
 
-    public int getIsLogin() {
+    public Integer getIsLogin() {
         return isLogin;
     }
 
-    public void setIsLogin(int isLogin) {
+    public void setIsLogin(Integer isLogin) {
         this.isLogin = isLogin;
     }
 
