@@ -1,6 +1,6 @@
 package com.mnf.loginservice.controller;
 
-import com.mnf.component.BaseController;
+import com.mnf.component.ABaseController;
 import com.mnf.component.dto.ResponseStatusOnlyDto;
 import com.mnf.loginservice.dto.LogoutRequestDto;
 import com.mnf.loginservice.service.ILogoutService;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/secured/api/logout")
-public class LogoutController extends BaseController {
+public class LogoutController extends ABaseController {
     @Autowired
     ILogoutService logoutService;
 

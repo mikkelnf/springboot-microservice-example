@@ -1,6 +1,6 @@
 package com.mnf.loginservice.controller;
 
-import com.mnf.component.BaseController;
+import com.mnf.component.ABaseController;
 import com.mnf.component.dto.ResponseStatusOnlyDto;
 import com.mnf.loginservice.dto.LoginRequestDto;
 import com.mnf.loginservice.service.ILoginService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/secured/api/login")
-public class LoginController extends BaseController {
+public class LoginController extends ABaseController {
     @Autowired
     ILoginService loginService;
 
