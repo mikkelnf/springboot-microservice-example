@@ -166,7 +166,9 @@ public class CustomQueryBuilder<T> {
         CriteriaQuery<Long> countCriteriaQuery = criteriaBuilder.createQuery(Long.class);
         Root<T> criteriaQueryRoot = countCriteriaQuery.from(entityClass);
 
-        if(!andPredicateList.isEmpty() && !orPredicateList.isEmpty()){
+        if(andPredicateList.isEmpty() && orPredicateList.isEmpty()){
+            countCriteriaQuery.select(criteriaBuilder.count(criteriaQueryRoot));
+        }else{
             List<Predicate> finalPredicates = new ArrayList<>();
 
             if(!andPredicateList.isEmpty()){
@@ -176,10 +178,8 @@ public class CustomQueryBuilder<T> {
                 finalPredicates.add(criteriaBuilder.or(orPredicateList.toArray(new Predicate[0])));
             }
 
-            countCriteriaQuery.where(finalPredicates.toArray(new Predicate[0]));
+            countCriteriaQuery.select(criteriaBuilder.count(criteriaQueryRoot)).where(andPredicateList.toArray(new Predicate[0]));
         }
-
-        countCriteriaQuery.select(criteriaBuilder.count(criteriaQueryRoot));
 
         return entityManager.createQuery(countCriteriaQuery).getSingleResult().intValue();
     }

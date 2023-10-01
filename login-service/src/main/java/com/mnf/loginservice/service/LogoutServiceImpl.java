@@ -1,7 +1,7 @@
 package com.mnf.loginservice.service;
 
 import com.mnf.common.entity.UserEntity;
-import com.mnf.component.BaseService;
+import com.mnf.component.ABaseService;
 import com.mnf.component.dto.ResponseStatusOnlyDto;
 import com.mnf.component.enumeration.ResponseDtoStatusEnum;
 import com.mnf.loginservice.dto.LogoutRequestDto;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class LogoutServiceImpl extends BaseService implements ILogoutService{
+public class LogoutServiceImpl extends ABaseService<UserEntity> implements ILogoutService{
     @Autowired
     IUserRepository userRepository;
 
