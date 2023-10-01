@@ -1,11 +1,16 @@
 package com.mnf.user.service;
 
+import com.mnf.component.dto.GetPaginationRequestDto;
+import com.mnf.component.dto.GetPaginationResponseDto;
 import com.mnf.component.dto.ResponseDto;
 import com.mnf.component.dto.ResponseStatusOnlyDto;
-import com.mnf.user.dto.AddUserRequestDto;
-import com.mnf.user.dto.UserResponseDto;
+import com.mnf.user.dto.UserRequestDto;
+import com.mnf.user.dto.GetUserResponseDto;
 
 public interface IUserService {
-    ResponseDto<UserResponseDto> findOneById(String id);
-    ResponseStatusOnlyDto addUser(AddUserRequestDto requestDto);
+    ResponseStatusOnlyDto add(UserRequestDto requestDto);
+    ResponseDto<GetUserResponseDto> getById(String id);
+    ResponseDto<GetPaginationResponseDto<GetUserResponseDto>> getPagination(GetPaginationRequestDto<UserRequestDto> requestDto);
+    ResponseStatusOnlyDto update(UserRequestDto requestDto);
+    ResponseStatusOnlyDto delete(UserRequestDto requestDto);
 }

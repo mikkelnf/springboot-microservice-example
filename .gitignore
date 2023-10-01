@@ -1,0 +1,56 @@
+# Compiled class files
+/build/
+/out/
+/bin/
+/.gradle/
+
+# Dependency directories
+/.idea/
+/.gradle/
+/.project
+/.settings/
+/.metadata/
+/.vscode/
+/.DS_Store
+/.classpath
+
+# Spring Boot specific
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/resources/application.properties
+!**/src/main/resources/application.yml
+
+# Log files
+logs/
+*.log
+log/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Intellij IDEA specific
+.idea/
+*.iml
+*.iws
+*.ipr
+.idea_modules/
+*.log
+
+# Gradle-specific
+.gradle/
+.gradle-wrapper/
+
+# Miscellaneous
+build/
+.gradle/
+.idea/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.bak
+*.swp

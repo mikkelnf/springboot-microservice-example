@@ -3,8 +3,8 @@ package com.mnf.component.dto;
 import com.mnf.component.enumeration.ResponseDtoStatusEnum;
 
 public abstract class AResponseDto{
-    public ResponseDtoStatusEnum status;
-    public String message;
+    private ResponseDtoStatusEnum status;
+    private String message;
 
     public ResponseDtoStatusEnum getStatus() {
         return status;
