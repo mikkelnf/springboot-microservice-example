@@ -1,11 +1,10 @@
 package com.mnf.component;
 
-import com.mnf.component.dto.GetPaginationResponseDto;
-import com.mnf.component.dto.PaginationInfoDto;
+import com.mnf.component.dto.*;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
-import javax.persistence.criteria.*;
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.*;
 import java.util.*;
 
 @Component
@@ -141,7 +140,12 @@ public class CustomQueryBuilder<T> {
         }
     }
 
-    public GetPaginationResponseDto<T> getAllWithPagination(Integer currentPage, Integer pageSize, String sortBy, String sortType){
+    public GetPaginationResponseDto<T> getAllWithPagination(GetPaginationRequestDto<?> getPaginationRequestDto){
+        Integer pageSize = getPaginationRequestDto.getSize();
+        Integer currentPage = getPaginationRequestDto.getPage();
+        String sortType = getPaginationRequestDto.getSortType();
+        String sortBy = getPaginationRequestDto.getSortBy();
+
         if("asc".equals(sortType)){
             this.orderList.add(criteriaBuilder.asc(root.get(sortBy)));
         }else if("desc".equals(sortType)){

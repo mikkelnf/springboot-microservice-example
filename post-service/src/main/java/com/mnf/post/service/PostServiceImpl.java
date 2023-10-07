@@ -1,31 +1,25 @@
 package com.mnf.post.service;
 
-import com.mnf.component.ABaseService;
-import com.mnf.component.CustomQueryBuilder;
-import com.mnf.component.dto.GetPaginationRequestDto;
-import com.mnf.component.dto.GetPaginationResponseDto;
-import com.mnf.component.dto.ResponseDto;
-import com.mnf.component.dto.ResponseStatusOnlyDto;
+import com.mnf.component.*;
+import com.mnf.component.dto.*;
 import com.mnf.component.enumeration.ResponseDtoStatusEnum;
-import com.mnf.post.dto.PostRequestDto;
-import com.mnf.post.dto.PostResponseDto;
+import com.mnf.post.dto.*;
 import com.mnf.post.entity.PostEntity;
 import com.mnf.post.exception.PostException;
 import com.mnf.post.repository.IPostRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import jakarta.transaction.Transactional;
 
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
 public class PostServiceImpl extends ABaseService<PostEntity> implements IPostService {
     @Autowired
-    IPostRepository userRepository;
+    IPostRepository postRepository;
 
     @Autowired
     ModelMapper modelMapper;
@@ -45,7 +39,7 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
             entity.setContent(requestDto.getContent());
             entity.setTitle(requestDto.getTitle());
 
-            userRepository.save(entity);
+            postRepository.save(entity);
 
             responseStatusOnlyDto.setStatus(ResponseDtoStatusEnum.SUCCESS);
         }
@@ -55,7 +49,7 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
 
     @Override
     public ResponseDto<PostResponseDto> getOneById(String id) {
-        Optional<PostEntity> optionalExistingEntity = userRepository.findById(id);
+        Optional<PostEntity> optionalExistingEntity = postRepository.findById(id);
 
         ResponseDto<PostResponseDto> responseDto = new ResponseDto<>();
 
@@ -90,12 +84,7 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
     @Override
     public ResponseDto<GetPaginationResponseDto<PostResponseDto>> getPagination(GetPaginationRequestDto<PostRequestDto> getPaginationRequestDto) {
         GetPaginationResponseDto<PostEntity> queryResultPagination =
-                findAllPaginationQuery(getPaginationRequestDto.getDto()).getAllWithPagination(
-                        getPaginationRequestDto.getPage(),
-                        getPaginationRequestDto.getSize(),
-                        getPaginationRequestDto.getSortBy(),
-                        getPaginationRequestDto.getSortType()
-                );
+                findAllPaginationQuery(getPaginationRequestDto.getDto()).getAllWithPagination(getPaginationRequestDto);
 
         List<PostResponseDto> mappedResponseList = queryResultPagination.getResults().stream()
                 .map(entity -> {
@@ -110,7 +99,7 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
 
     @Override
     public ResponseStatusOnlyDto update(PostRequestDto requestDto) {
-        Optional<PostEntity> optionalExistingEntity = userRepository.findById(requestDto.getId());
+        Optional<PostEntity> optionalExistingEntity = postRepository.findById(requestDto.getId());
 
         ResponseStatusOnlyDto responseStatusOnlyDto = new ResponseStatusOnlyDto();
 
@@ -120,7 +109,7 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
             entity.setContent(requestDto.getContent());
             entity.setTitle(requestDto.getTitle());
 
-            userRepository.save(entity);
+            postRepository.save(entity);
 
             responseStatusOnlyDto.setStatus(ResponseDtoStatusEnum.SUCCESS);
         }else{
@@ -133,7 +122,7 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
 
     @Override
     public ResponseStatusOnlyDto delete(PostRequestDto requestDto) {
-        Optional<PostEntity> optionalExistingEntity = userRepository.findById(requestDto.getId());
+        Optional<PostEntity> optionalExistingEntity = postRepository.findById(requestDto.getId());
 
         ResponseStatusOnlyDto responseStatusOnlyDto = new ResponseStatusOnlyDto();
 
@@ -141,7 +130,7 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
             PostEntity entity = optionalExistingEntity.get();
             entity.setIsActive(0);
 
-            userRepository.save(entity);
+            postRepository.save(entity);
 
             responseStatusOnlyDto.setStatus(ResponseDtoStatusEnum.SUCCESS);
         }else{
@@ -169,6 +158,7 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
                 .buildQuery(getPostEntityClass())
                 .start()
                     .equals("isActive", requestDto.getIsActive())
+                .and()
                 .end();
     }
 }

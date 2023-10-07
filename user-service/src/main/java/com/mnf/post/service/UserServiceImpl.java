@@ -13,11 +13,11 @@ import com.mnf.post.dto.UserRequestDto;
 import com.mnf.post.dto.GetUserResponseDto;
 import com.mnf.post.exception.UserException;
 import com.mnf.post.repository.IUserRepository;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -73,12 +73,7 @@ public class UserServiceImpl extends ABaseService<UserEntity> implements IUserSe
     @Override
     public ResponseDto<GetPaginationResponseDto<GetUserResponseDto>> getPagination(GetPaginationRequestDto<UserRequestDto> getPaginationRequestDto) {
         GetPaginationResponseDto<UserEntity> queryResultPagination =
-                findAllPaginationQuery(getPaginationRequestDto.getDto()).getAllWithPagination(
-                        getPaginationRequestDto.getPage(),
-                        getPaginationRequestDto.getSize(),
-                        getPaginationRequestDto.getSortBy(),
-                        getPaginationRequestDto.getSortType()
-                );
+                findAllPaginationQuery(getPaginationRequestDto.getDto()).getAllWithPagination(getPaginationRequestDto);
 
         List<GetUserResponseDto> mappedResponseList = queryResultPagination.getResults().stream()
                 .map(entity -> {
