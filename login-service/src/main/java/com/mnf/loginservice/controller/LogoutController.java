@@ -1,7 +1,7 @@
 package com.mnf.loginservice.controller;
 
-import com.mnf.component.ABaseController;
-import com.mnf.component.dto.ResponseStatusOnlyDto;
+import com.mnf.compos.ABaseController;
+import com.mnf.compos.dto.ResponseStatusOnlyDto;
 import com.mnf.loginservice.dto.LogoutRequestDto;
 import com.mnf.loginservice.service.ILogoutService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package com.mnf.common.entity;
 
 import com.mnf.common.entity.listener.UserEntityListener;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity

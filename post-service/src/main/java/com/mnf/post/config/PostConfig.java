@@ -1,7 +1,6 @@
 package com.mnf.post.config;
 
-import com.mnf.post.service.IPostService;
-import com.mnf.post.service.PostServiceImpl;
+import com.mnf.post.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

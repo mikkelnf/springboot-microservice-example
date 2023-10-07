@@ -16,13 +16,12 @@ ext {
 
 dependencies {
 	implementation project(":common")
-	implementation project(":component")
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.cloud:spring-cloud-config-server'
-	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+//	implementation 'org.springframework.cloud:spring-cloud-config-server'
+//	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.modelmapper:modelmapper:3.1.1'
 	implementation 'org.mindrot:jbcrypt:0.4'
 	implementation 'org.slf4j:slf4j-parent:2.0.5'

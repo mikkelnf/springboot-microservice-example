@@ -2,8 +2,7 @@ package com.mnf.post.entity.listener;
 
 import com.mnf.post.entity.PostEntity;
 
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 

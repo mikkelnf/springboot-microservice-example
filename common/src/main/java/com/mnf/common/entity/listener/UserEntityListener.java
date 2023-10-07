@@ -1,9 +1,8 @@
 package com.mnf.common.entity.listener;
 
 import com.mnf.common.entity.UserEntity;
+import jakarta.persistence.*;
 
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import java.time.LocalDate;
 import java.util.UUID;
 

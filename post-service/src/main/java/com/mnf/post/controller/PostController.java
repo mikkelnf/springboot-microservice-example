@@ -1,10 +1,7 @@
 package com.mnf.post.controller;
 
-import com.mnf.component.ABaseController;
-import com.mnf.component.dto.GetPaginationRequestDto;
-import com.mnf.component.dto.GetPaginationResponseDto;
-import com.mnf.component.dto.ResponseDto;
-import com.mnf.component.dto.ResponseStatusOnlyDto;
+import com.mnf.compos.ABaseController;
+import com.mnf.compos.dto.*;
 import com.mnf.post.dto.PostRequestDto;
 import com.mnf.post.dto.PostResponseDto;
 import com.mnf.post.service.IPostService;

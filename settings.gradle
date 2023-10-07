@@ -1,8 +1,6 @@
 rootProject.name = 'springboot-microservice-example'
 
 include('common')
-include('component')
 include('login-service')
 include('user-service')
 include('post-service')
-

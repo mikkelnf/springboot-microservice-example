@@ -1,8 +1,8 @@
 package com.mnf.post.service;
 
-import com.mnf.component.*;
-import com.mnf.component.dto.*;
-import com.mnf.component.enumeration.ResponseDtoStatusEnum;
+import com.mnf.compos.*;
+import com.mnf.compos.dto.*;
+import com.mnf.compos.enumeration.ResponseDtoStatusEnum;
 import com.mnf.post.dto.*;
 import com.mnf.post.entity.PostEntity;
 import com.mnf.post.exception.PostException;
@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 public class PostServiceImpl extends ABaseService<PostEntity> implements IPostService {
     @Autowired
     IPostRepository postRepository;
-
     @Autowired
     ModelMapper modelMapper;
 
@@ -36,8 +35,10 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
         }else{
             PostEntity entity = new PostEntity();
 
-            entity.setContent(requestDto.getContent());
+            ///add data
             entity.setTitle(requestDto.getTitle());
+            entity.setSlug(requestDto.getSlug());
+            entity.setCategories(requestDto.getCategories());
 
             postRepository.save(entity);
 
@@ -46,7 +47,6 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
 
         return responseStatusOnlyDto;
     }
-
     @Override
     public ResponseDto<PostResponseDto> getOneById(String id) {
         Optional<PostEntity> optionalExistingEntity = postRepository.findById(id);
@@ -63,7 +63,6 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
 
         return responseDto;
     }
-
     @Override
     public ResponseDto<PostResponseDto> getOneBySlug(String slug) {
         Optional<PostEntity> optionalExistingEntity = findOneBySlugQuery(new PostRequestDto(slug)).getOne();
@@ -80,11 +79,10 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
 
         return responseDto;
     }
-
     @Override
     public ResponseDto<GetPaginationResponseDto<PostResponseDto>> getPagination(GetPaginationRequestDto<PostRequestDto> getPaginationRequestDto) {
         GetPaginationResponseDto<PostEntity> queryResultPagination =
-                findAllPaginationQuery(getPaginationRequestDto.getDto()).getAllWithPagination(getPaginationRequestDto);
+            findAllPaginationQuery(getPaginationRequestDto.getDto()).getAllWithPagination(getPaginationRequestDto);
 
         List<PostResponseDto> mappedResponseList = queryResultPagination.getResults().stream()
                 .map(entity -> {
@@ -96,7 +94,6 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
 
         return new ResponseDto<>(ResponseDtoStatusEnum.SUCCESS, null, getPaginationResponseDto);
     }
-
     @Override
     public ResponseStatusOnlyDto update(PostRequestDto requestDto) {
         Optional<PostEntity> optionalExistingEntity = postRepository.findById(requestDto.getId());
@@ -106,8 +103,10 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
         if(optionalExistingEntity.isPresent()){
             PostEntity entity = optionalExistingEntity.get();
 
-            entity.setContent(requestDto.getContent());
+            ///update data
             entity.setTitle(requestDto.getTitle());
+            entity.setSlug(requestDto.getSlug());
+            entity.setCategories(requestDto.getCategories());
 
             postRepository.save(entity);
 
@@ -119,7 +118,6 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
 
         return responseStatusOnlyDto;
     }
-
     @Override
     public ResponseStatusOnlyDto delete(PostRequestDto requestDto) {
         Optional<PostEntity> optionalExistingEntity = postRepository.findById(requestDto.getId());
@@ -128,6 +126,7 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
 
         if(optionalExistingEntity.isPresent()){
             PostEntity entity = optionalExistingEntity.get();
+
             entity.setIsActive(0);
 
             postRepository.save(entity);
@@ -140,17 +139,8 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
 
         return responseStatusOnlyDto;
     }
-
     protected Class<PostEntity> getPostEntityClass(){
         return PostEntity.class;
-    }
-
-    public CustomQueryBuilder<PostEntity> findOneBySlugQuery(PostRequestDto requestDto) {
-        return getQueryBuilder()
-                .buildQuery(getPostEntityClass())
-                .start()
-                    .equals("slug", requestDto.getSlug())
-                .end();
     }
 
     public CustomQueryBuilder<PostEntity> findAllPaginationQuery(PostRequestDto requestDto) {
@@ -158,7 +148,14 @@ public class PostServiceImpl extends ABaseService<PostEntity> implements IPostSe
                 .buildQuery(getPostEntityClass())
                 .start()
                     .equals("isActive", requestDto.getIsActive())
-                .and()
+                .end();
+    }
+
+    public CustomQueryBuilder<PostEntity> findOneBySlugQuery(PostRequestDto requestDto) {
+        return getQueryBuilder()
+                .buildQuery(getPostEntityClass())
+                .start()
+                    .equals("slug", requestDto.getSlug())
                 .end();
     }
 }

@@ -2,7 +2,7 @@ package com.mnf.post.entity;
 
 import com.mnf.post.entity.listener.PostEntityListener;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -13,15 +13,6 @@ public class PostEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "title")
-    private String title;
-
-    @Column(name = "content")
-    private String content;
-
-    @Column(name = "slug")
-    private String slug;
-
     @Column(name = "is_active")
     private Integer isActive;
 
@@ -31,12 +22,29 @@ public class PostEntity {
     @Column(name = "updated_date")
     private LocalDate updatedDate;
 
-    public String getId() {
-        return id;
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "slug")
+    private String slug;
+
+    @Column(name = "categories")
+    private String categories;
+
+    public String getCategories() {
+        return categories;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCategories(String categories) {
+        this.categories = categories;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     public String getTitle() {
@@ -47,20 +55,12 @@ public class PostEntity {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public String getId() {
+        return id;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Integer getIsActive() {

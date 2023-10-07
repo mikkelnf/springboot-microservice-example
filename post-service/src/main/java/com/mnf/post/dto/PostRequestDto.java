@@ -2,10 +2,10 @@ package com.mnf.post.dto;
 
 public class PostRequestDto {
     private String id;
+    private Integer isActive;
     private String title;
     private String slug;
-    private String content;
-    private Integer isActive;
+    private String categories;
 
     public PostRequestDto() {
     }
@@ -20,6 +20,14 @@ public class PostRequestDto {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Integer getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
     }
 
     public String getTitle() {
@@ -38,19 +46,12 @@ public class PostRequestDto {
         this.slug = slug;
     }
 
-    public String getContent() {
-        return content;
+    public String getCategories() {
+        return categories;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCategories(String categories) {
+        this.categories = categories;
     }
 
-    public Integer getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Integer isActive) {
-        this.isActive = isActive;
-    }
 }

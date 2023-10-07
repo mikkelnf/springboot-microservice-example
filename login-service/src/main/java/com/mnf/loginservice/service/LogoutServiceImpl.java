@@ -1,15 +1,15 @@
 package com.mnf.loginservice.service;
 
 import com.mnf.common.entity.UserEntity;
-import com.mnf.component.ABaseService;
-import com.mnf.component.dto.ResponseStatusOnlyDto;
-import com.mnf.component.enumeration.ResponseDtoStatusEnum;
+import com.mnf.compos.ABaseService;
+import com.mnf.compos.dto.ResponseStatusOnlyDto;
+import com.mnf.compos.enumeration.ResponseDtoStatusEnum;
 import com.mnf.loginservice.dto.LogoutRequestDto;
 import com.mnf.loginservice.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 
 @Service

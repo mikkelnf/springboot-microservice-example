@@ -1,9 +1,6 @@
 package com.mnf.post.service;
 
-import com.mnf.component.dto.GetPaginationRequestDto;
-import com.mnf.component.dto.GetPaginationResponseDto;
-import com.mnf.component.dto.ResponseDto;
-import com.mnf.component.dto.ResponseStatusOnlyDto;
+import com.mnf.compos.dto.*;
 import com.mnf.post.dto.PostRequestDto;
 import com.mnf.post.dto.PostResponseDto;
 

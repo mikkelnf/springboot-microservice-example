@@ -1,6 +1,6 @@
 package com.mnf.post.feign;
 
-import com.mnf.component.dto.ResponseStatusOnlyDto;
+import com.mnf.compos.dto.ResponseStatusOnlyDto;
 import com.mnf.post.dto.LoginRequestDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
